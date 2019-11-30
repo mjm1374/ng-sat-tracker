@@ -1,0 +1,23 @@
+body {
+  height: 100%;
+}
+
+
+
+.container {
+  width: 90%;
+  height: 90%;
+  border: 1px solid red;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin: 0 auto;
+
+  .toolbox {
+    width: 50;
+    height: 90%;
+    border: 1px solid black;
+    flex-grow: 1;
+    flex-basis: auto;
+  }
+}
