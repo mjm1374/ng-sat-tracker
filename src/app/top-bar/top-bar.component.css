@@ -1,0 +1,14 @@
+.topHolder {
+  width: 98%;
+  height: 40px;
+  padding: 1%;
+}
+
+a {
+  color: #1b6d0d;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

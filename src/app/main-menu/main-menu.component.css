@@ -4,3 +4,12 @@
   overflow-y: scroll;
 
 }
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
