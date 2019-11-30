@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class SatelitesService {
+export class SateliteService {
   satelites = [];
 
   constructor(
@@ -22,6 +22,11 @@ export class SatelitesService {
     );
   }
 
+  lookUpSatelites(position: position, radius: number) {
+    console.log('lookUp: ', position, radius);
+    return null;
+  }
+
   getSatelites() {
     return this.satelites;
   }
@@ -34,4 +39,9 @@ export class SatelitesService {
   // getShippingPrices() {
   //   return this.http.get('/assets/shipping.json');
   // }
+}
+
+interface position {
+  lat: number;
+  lng: number;
 }

@@ -1,8 +1,8 @@
 <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false"
-  (mapClick)="mapClicked($event)" (centerChange)="mapCenterChange($event)">
+  (mapClick)="mapClicked($event)" (centerChange)="mapCenterChange($event)" (mapReady)="mapReady($event)">
 
   <agm-marker *ngFor=" let m of markers; let i=index" (markerClick)="clickedMarker(m.label, i)" [latitude]="m.lat"
-    [longitude]="m.lng" [label]="m.label" [markerDraggable]="m.draggable" (dragEnd)=" markerDragEnd(m, $event)">
+    [longitude]="m.lng" [label]="m.label" [markerDraggable]="m.draggable" (dragEnd)="markerDragEnd(m, $event)">
 
     <agm-info-window>
       <strong>InfoWindow content</strong>
@@ -10,8 +10,8 @@
 
   </agm-marker>
 
-  <agm-circle [latitude]="lat + 0.3" [longitude]="lng" [radius]="5000" [fillColor]="'red'" [circleDraggable]="true"
-    [editable]="true">
+  <agm-circle [latitude]="lat" [longitude]="lng" [radius]="radius" [strokeColor]="'red'" [strokeWeight]="1"
+    [fillOpacity]="0.05" [circleDraggable]="true" [editable]="true" (radiusChange)="updateRadius($event)">
   </agm-circle>
 
 </agm-map>

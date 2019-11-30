@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MouseEvent, LatLngLiteral } from '@agm/core'; // google maps
+import { fromEvent, Subject } from 'rxjs';
+import { debounceTime, map } from 'rxjs/operators';
 
-import { SatelitesService } from '../satelites.service';
+import { SateliteService } from '../satelite.service';
 
 @Component({
   selector: 'app-map',
@@ -10,16 +12,19 @@ import { SatelitesService } from '../satelites.service';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-  // google maps zoom level
+  // default values
   zoom: number = 8;
+  radius: number = 95000;
+  newCenterLat: number;
+  newCenterLng: number;
 
   // initial center position for the map
-  lat: number;
-  lng: number;
+  lat: number = 40.654597;
+  lng: number = -74.061342;
 
   constructor(
     private route: ActivatedRoute,
-    private satelitesService: SatelitesService
+    private sateliteService: SateliteService
   ) { }
 
   ngOnInit() {
@@ -27,6 +32,7 @@ export class MapComponent implements OnInit {
       navigator.geolocation.getCurrentPosition((position) => {
         this.lat = position.coords.latitude;
         this.lng = position.coords.longitude;
+        this.radius = this.radius;
       }, this.showError);
     } else {
       throw ("Geolocation is not supported by this browser."); //TODO - print to screen
@@ -55,41 +61,55 @@ export class MapComponent implements OnInit {
   }
 
   mapClicked($event: MouseEvent) {
-    this.satelitesService.addToSatelites($event);
+    this.sateliteService.addToSatelites($event);
     // this.markers.push({
     //   lat: $event.coords.lat,
     //   lng: $event.coords.lng,
     //   draggable: true
     // });
-    console.log(this.satelitesService.getSatelites());
+    console.log(this.sateliteService.getSatelites());
   }
 
-  mapCenterChange($event: LatLngLiteral) {
-    console.log('LatLngLiteral', $event);
+  mapCenterChange($event) {
+    this.newCenterLat = $event.lat;
+    this.newCenterLng = $event.lng;
   }
 
+  mapReady(map) {
+    map.addListener("dragend", () => {
+      this.lat = this.newCenterLat;
+      this.lng = this.newCenterLng;
+      this.sateliteService.lookUpSatelites({ lat: this.newCenterLat, lng: this.newCenterLng }, this.radius)
+      console.log('dragmapend', this.newCenterLat, this.newCenterLng)
+    });
+  }
 
   markerDragEnd(m: marker, $event: MouseEvent) {
     console.log('dragEnd', m, $event);
   }
 
+  updateRadius($event) {
+    console.log('updateRadius', $event);
+    this.radius = $event;
+  }
+
   markers: marker[] = [
     {
-      lat: 51.673858,
-      lng: 7.815982,
-      label: 'A',
+      lat: 40.504402,
+      lng: -75.764910,
+      label: 'Allentown',
       draggable: true
     },
     {
-      lat: 51.373858,
-      lng: 7.215982,
-      label: 'B',
+      lat: 39.409672,
+      lng: -74.522566,
+      label: 'Sea Isle',
       draggable: false
     },
     {
-      lat: 51.723858,
-      lng: 7.895982,
-      label: 'C',
+      lat: 41.433461,
+      lng: -75.620719,
+      label: 'Scranton',
       draggable: true
     }
   ]
