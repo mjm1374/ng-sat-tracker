@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MouseEvent } from '@agm/core'; // google maps
+import { MouseEvent, LatLngLiteral } from '@agm/core'; // google maps
 
 @Component({
   selector: 'app-map',
@@ -54,6 +54,13 @@ export class MapComponent implements OnInit {
       draggable: true
     });
   }
+
+
+  mapCenterChange($event: LatLngLiteral) {
+    console.log('LatLngLiteral', $event);
+  }
+
+
 
   markerDragEnd(m: marker, $event: MouseEvent) {
     console.log('dragEnd', m, $event);
