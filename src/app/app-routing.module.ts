@@ -7,6 +7,7 @@ import { SatelliteListComponent } from "./satellite-list/satellite-list.componen
 const routes: Routes = [
   { path: "", component: MainMenuComponent },
   { path: "satellites", component: SatelliteListComponent },
+  { path: 'satellites/:categoryId', component: SatelliteListComponent },
 
 ];
 

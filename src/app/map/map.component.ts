@@ -5,6 +5,7 @@ import { fromEvent, Subject } from 'rxjs';
 import { debounceTime, map } from 'rxjs/operators';
 
 import { SatelliteService } from '../satellite.service';
+import { MapService } from '../map.service';
 
 @Component({
   selector: 'app-map',
@@ -18,13 +19,15 @@ export class MapComponent implements OnInit {
   newCenterLat: number;
   newCenterLng: number;
 
+
   // initial center position for the map
   lat: number = 40.654597;
   lng: number = -74.061342;
 
   constructor(
     private route: ActivatedRoute,
-    private satelliteService: SatelliteService
+    private satelliteService: SatelliteService,
+    private mapService: MapService
   ) { }
 
   ngOnInit() {
@@ -33,10 +36,15 @@ export class MapComponent implements OnInit {
         this.lat = position.coords.latitude;
         this.lng = position.coords.longitude;
         this.radius = this.radius;
+        this.setPosition({ lat: this.lat, lng: this.lng, radius: this.radius });
       }, this.showError);
     } else {
       throw ("Geolocation is not supported by this browser."); //TODO - print to screen
     }
+  }
+
+  setPosition(position) {
+    this.mapService.setPosition(position)
   }
 
   showError(error) {
@@ -61,12 +69,7 @@ export class MapComponent implements OnInit {
   }
 
   mapClicked($event: MouseEvent) {
-    this.satelliteService.addToSatellites($event);
-    // this.markers.push({
-    //   lat: $event.coords.lat,
-    //   lng: $event.coords.lng,
-    //   draggable: true
-    // });
+    //this.satelliteService.addToSatellites($event);
     console.log(this.satelliteService.getSatellites());
   }
 
@@ -79,7 +82,8 @@ export class MapComponent implements OnInit {
     map.addListener("dragend", () => {
       this.lat = this.newCenterLat;
       this.lng = this.newCenterLng;
-      this.satelliteService.lookUpSatellites({ lat: this.newCenterLat, lng: this.newCenterLng }, this.radius)
+      this.satelliteService.lookUpSatellites({ lat: this.newCenterLat, lng: this.newCenterLng }, this.radius);
+      this.setPosition({ lat: this.lat, lng: this.lng, radius: this.radius });
       console.log('dragmapend', this.newCenterLat, this.newCenterLng)
     });
   }
@@ -91,6 +95,7 @@ export class MapComponent implements OnInit {
   updateRadius($event) {
     console.log('updateRadius', $event);
     this.radius = $event;
+    this.setPosition({ lat: this.lat, lng: this.lng, radius: this.radius });
   }
 
   markers: marker[] = [

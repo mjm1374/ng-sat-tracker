@@ -2,9 +2,11 @@
 
 <div *ngFor="let satellite of satellites; index as satId">
   <p>
-    {{satId}} -
-    {{ satellite.lat }},
-    {{ satellite.lng }}
+    {{satellite.satid}} -
+    {{ satellite.satname }}:
+    {{ satellite.satlat }},
+    {{ satellite.satlng }}
+
   </p>
 
 </div>

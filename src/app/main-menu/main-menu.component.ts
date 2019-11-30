@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { categories } from '../categories';
 
 @Component({
   selector: 'app-main-menu',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainMenuComponent implements OnInit {
 
+  categories = categories;
   constructor() { }
 
   ngOnInit() {
