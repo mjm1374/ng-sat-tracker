@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { MouseEvent, LatLngLiteral } from '@agm/core'; // google maps
+
+import { SatelitesService } from '../satelites.service';
 
 @Component({
   selector: 'app-map',
@@ -13,6 +16,11 @@ export class MapComponent implements OnInit {
   // initial center position for the map
   lat: number;
   lng: number;
+
+  constructor(
+    private route: ActivatedRoute,
+    private satelitesService: SatelitesService
+  ) { }
 
   ngOnInit() {
     if (navigator.geolocation) {
@@ -29,7 +37,6 @@ export class MapComponent implements OnInit {
     switch (error.code) {
       case error.PERMISSION_DENIED:
         console.log("User denied the request for Geolocation.");
-
         break;
       case error.POSITION_UNAVAILABLE:
         console.log("Location information is unavailable.");
@@ -48,18 +55,18 @@ export class MapComponent implements OnInit {
   }
 
   mapClicked($event: MouseEvent) {
-    this.markers.push({
-      lat: $event.coords.lat,
-      lng: $event.coords.lng,
-      draggable: true
-    });
+    this.satelitesService.addToSatelites($event);
+    // this.markers.push({
+    //   lat: $event.coords.lat,
+    //   lng: $event.coords.lng,
+    //   draggable: true
+    // });
+    console.log(this.satelitesService.getSatelites());
   }
-
 
   mapCenterChange($event: LatLngLiteral) {
     console.log('LatLngLiteral', $event);
   }
-
 
 
   markerDragEnd(m: marker, $event: MouseEvent) {
