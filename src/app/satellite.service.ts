@@ -4,16 +4,16 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class SateliteService {
-  satelites = [];
+export class SatelliteService {
+  satellites = [];
 
   constructor(
     private http: HttpClient
   ) { }
 
-  addToSatelites(sat) {
+  addToSatellites(sat) {
     console.log(sat);
-    this.satelites.push(
+    this.satellites.push(
       {
         lat: sat.coords.lat,
         lng: sat.coords.lng,
@@ -22,18 +22,19 @@ export class SateliteService {
     );
   }
 
-  lookUpSatelites(position: position, radius: number) {
+  lookUpSatellites(position: position, radius: number) {
     console.log('lookUp: ', position, radius);
     return null;
   }
 
-  getSatelites() {
-    return this.satelites;
+  getSatellites() {
+    console.log('getSatellites');
+    return this.satellites;
   }
 
-  clearSatelites() {
-    this.satelites = [];
-    return this.satelites;
+  clearSatellites() {
+    this.satellites = [];
+    return this.satellites;
   }
 
   // getShippingPrices() {

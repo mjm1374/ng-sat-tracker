@@ -6,7 +6,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { TopBarComponent } from "./top-bar/top-bar.component";
-import { SateliteListComponent } from "./satelite-list/satelite-list.component";
+import { SatelliteListComponent } from "./satellite-list/satellite-list.component";
 import { MainMenuComponent } from "./main-menu/main-menu.component";
 import { MapComponent } from "./map/map.component";
 import { AgmCoreModule } from "@agm/core"; //google maps
@@ -14,7 +14,7 @@ import { AgmCoreModule } from "@agm/core"; //google maps
   declarations: [
     AppComponent,
     TopBarComponent,
-    SateliteListComponent,
+    SatelliteListComponent,
     MainMenuComponent,
     MapComponent
   ],

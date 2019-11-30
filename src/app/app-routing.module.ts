@@ -2,11 +2,11 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
 import { MainMenuComponent } from "./main-menu/main-menu.component";
-import { SateliteListComponent } from "./satelite-list/satelite-list.component";
+import { SatelliteListComponent } from "./satellite-list/satellite-list.component";
 
 const routes: Routes = [
   { path: "", component: MainMenuComponent },
-  { path: "satelites/", component: SateliteListComponent },
+  { path: "satellites", component: SatelliteListComponent },
 
 ];
 

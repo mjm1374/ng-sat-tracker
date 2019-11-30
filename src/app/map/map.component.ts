@@ -4,7 +4,7 @@ import { MouseEvent, LatLngLiteral } from '@agm/core'; // google maps
 import { fromEvent, Subject } from 'rxjs';
 import { debounceTime, map } from 'rxjs/operators';
 
-import { SateliteService } from '../satelite.service';
+import { SatelliteService } from '../satellite.service';
 
 @Component({
   selector: 'app-map',
@@ -24,7 +24,7 @@ export class MapComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private sateliteService: SateliteService
+    private satelliteService: SatelliteService
   ) { }
 
   ngOnInit() {
@@ -61,13 +61,13 @@ export class MapComponent implements OnInit {
   }
 
   mapClicked($event: MouseEvent) {
-    this.sateliteService.addToSatelites($event);
+    this.satelliteService.addToSatellites($event);
     // this.markers.push({
     //   lat: $event.coords.lat,
     //   lng: $event.coords.lng,
     //   draggable: true
     // });
-    console.log(this.sateliteService.getSatelites());
+    console.log(this.satelliteService.getSatellites());
   }
 
   mapCenterChange($event) {
@@ -79,7 +79,7 @@ export class MapComponent implements OnInit {
     map.addListener("dragend", () => {
       this.lat = this.newCenterLat;
       this.lng = this.newCenterLng;
-      this.sateliteService.lookUpSatelites({ lat: this.newCenterLat, lng: this.newCenterLng }, this.radius)
+      this.satelliteService.lookUpSatellites({ lat: this.newCenterLat, lng: this.newCenterLng }, this.radius)
       console.log('dragmapend', this.newCenterLat, this.newCenterLng)
     });
   }

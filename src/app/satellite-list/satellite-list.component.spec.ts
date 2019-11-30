@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { SateliteListComponent } from './satelite-list.component';
+import { SatelliteListComponent } from './satellite-list.component';
 
 describe('SateliteListComponent', () => {
-  let component: SateliteListComponent;
-  let fixture: ComponentFixture<SateliteListComponent>;
+  let component: SatelliteListComponent;
+  let fixture: ComponentFixture<SatelliteListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SateliteListComponent ]
+      declarations: [SatelliteListComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SateliteListComponent);
+    fixture = TestBed.createComponent(SatelliteListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
