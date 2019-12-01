@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MouseEvent, LatLngLiteral } from '@agm/core'; // google maps
 import { fromEvent, Subject } from 'rxjs';
@@ -26,6 +26,8 @@ export class MapComponent implements OnInit {
   // initial center position for the map
   lat: number = 40.654597;
   lng: number = -74.061342;
+  //event listener
+  newSatellites = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -44,7 +46,13 @@ export class MapComponent implements OnInit {
     } else {
       throw ("Geolocation is not supported by this browser."); //TODO - print to screen
     }
-    this.mapService.getMarkers();
+    //this.mapService.getMarkers();
+
+    this.satelliteService.updateSats.subscribe(newSatellites => {
+      this.newSatellites = newSatellites;
+      this.markers = this.mapService.getMarkers();//  <----------------------- HERE
+      console.log('this.newSatellites', this.newSatellites)
+    });
   }
 
   setPosition(position) {
@@ -73,7 +81,7 @@ export class MapComponent implements OnInit {
       this.setPosition({ lat: this.lat, lng: this.lng, radius: this.radius });
       this.markers = this.mapService.getMarkers();
       console.log('dragmapend', this.newCenterLat, this.newCenterLng);
-      console.log('markers', this.markers);
+      //console.log('markers', this.markers);
     });
   }
 
@@ -82,7 +90,6 @@ export class MapComponent implements OnInit {
   }
 
   updateRadius($event) {
-    console.log('updateRadius', $event);
     this.radius = $event;
     this.setPosition({ lat: this.lat, lng: this.lng, radius: this.radius });
   }
@@ -108,27 +115,6 @@ export class MapComponent implements OnInit {
     }
   }
 
-
-  // markers: marker[] = [
-  //   {
-  //     satlat: 40.504402,
-  //     satlng: -75.764910,
-  //     satname: 'Allentown',
-  //     draggable: true
-  //   },
-  //   {
-  //     satlat: 39.409672,
-  //     satlng: -74.522566,
-  //     satname: 'Sea Isle',
-  //     draggable: false
-  //   },
-  //   {
-  //     satlat: 41.433461,
-  //     satlng: -75.620719,
-  //     satname: 'Scranton',
-  //     draggable: true
-  //   }
-  // ]
 }
 
 // just an interface for type safety.

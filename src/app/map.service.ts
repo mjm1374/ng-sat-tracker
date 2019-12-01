@@ -26,7 +26,12 @@ export class MapService {
   }
 
   setMarkers(markers) {
+    this.clearMarkers();
     this.markers = markers;
+  }
+
+  clearMarkers() {
+    this.markers;
   }
 
   constructor(

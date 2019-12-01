@@ -1,13 +1,15 @@
 <h1> Satellites </h1>
 <div class="satList">
-  <div *ngFor="let satellite of satellites; index as satId">
-    <p>
-      {{satellite.satid}} -
-      {{ satellite.satname }}:
-      {{ satellite.satlat }},
-      {{ satellite.satlng }}
+  <div *ngIf="satellites">
+    <div *ngFor="let satellite of satellites; index as satId">
+      <p>
+        {{satellite.satid}} -
+        {{ satellite.satname }}:
+        {{ satellite.satlat }},
+        {{ satellite.satlng }}
 
-    </p>
+      </p>
 
+    </div>
   </div>
 </div>
