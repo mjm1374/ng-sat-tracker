@@ -1,9 +1,9 @@
 <h1>Satellite Category</h1>
-<div class="menu">
+<div class="menu databox">
   <div *ngFor="let category of categories; index as productId">
     <h3>
       <a [title]="category.name + ' details'" [routerLink]="['/satellites', category.id]">
-        {{ category.name }} - {{category.id}}
+        {{ category.name }}
       </a>
     </h3>
   </div>

@@ -14,11 +14,9 @@ body {
 }
 
 
-
 .container {
-  width: 90%;
+  width: 98%;
   height: 90%;
-  border: 1px solid red;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -27,12 +25,14 @@ body {
   .toolbox {
     width: 50%;
     height: 90%;
-    border: 1px solid black;
     flex-grow: 1;
     flex-basis: auto;
   }
 
   .container__tools {
-    padding: 20px 20px 10px 20px;
+    padding: 0px 20px;
+    width: 25%;
   }
+
+
 }
