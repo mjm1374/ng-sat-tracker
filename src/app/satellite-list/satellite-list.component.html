@@ -1,6 +1,6 @@
 <h1> Satellites </h1>
 <div class="satList">
-  <div *ngIf="satellites">
+  <div *ngIf="satellites; else notShow">
     <div *ngFor="let satellite of satellites; index as satId">
       <p>
         {{satellite.satid}} -
@@ -12,4 +12,9 @@
 
     </div>
   </div>
+  <ng-template #notShow>
+    <p>
+      There are no satellites currently visible from here.
+    </p>
+  </ng-template>
 </div>

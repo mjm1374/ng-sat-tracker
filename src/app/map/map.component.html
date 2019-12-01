@@ -2,7 +2,10 @@
   (mapClick)="mapClicked($event)" (centerChange)="mapCenterChange($event)" (mapReady)="mapReady($event)">
 
   <agm-marker *ngFor=" let m of markers; let i=index" (markerClick)="clickedMarker(m.label, i)" [latitude]="m.satlat"
-    [longitude]="m.satlng" [label]="m.satname" [markerDraggable]="false" (dragEnd)="markerDragEnd(m, $event)">
+    [longitude]="m.satlng" [label]="{fontSize: '12px', fontWeight: 'bold', text: m.satname}"
+    [iconUrl]="{url: '.../../assets/icons8-satellite-50.png',labelOrigin:{x:22.5,y:-5}}" [markerDraggable]="false"
+    (dragEnd)="markerDragEnd(m,
+    $event)">
 
     <agm-info-window>
       <strong>InfoWindow content</strong>
@@ -12,7 +15,13 @@
 
   <!-- <agm-circle [latitude]="lat" [longitude]="lng" [radius]="radius" [strokeColor]="'red'" [strokeWeight]="1"
     [fillOpacity]="0.05" [circleDraggable]="true" [editable]="true" (radiusChange)="updateRadius($event)">
-  </agm-circle> -->
+  </agm-circle> 
+
+[icon]="{url: '.../../assets/satellite.png',labelOrigin:{x:22.5,y:20},
+scaledSize:
+{height: 45,width: 45}}"
+
+-->
 
 </agm-map>
 
