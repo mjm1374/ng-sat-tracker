@@ -9,6 +9,11 @@ export class MapService {
   lat: number = 40.654597;
   lng: number = -74.061342;
   radius: number = 50000;
+  markers;
+
+  getPosition() {
+    return { lat: this.lat, lng: this.lng, radius: this.radius };
+  }
 
   setPosition(position) {
     this.lat = position.lat;
@@ -16,8 +21,12 @@ export class MapService {
     this.radius = position.radius;
   }
 
-  getPosition() {
-    return { lat: this.lat, lng: this.lng, radius: this.radius };
+  getMarkers() {
+    return this.markers;
+  }
+
+  setMarkers(markers) {
+    this.markers = markers;
   }
 
   constructor(

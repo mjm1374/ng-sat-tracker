@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MapService } from './map.service';
 import { filter, map } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -37,7 +38,8 @@ export class SatelliteService {
   //Request: /above/{observer_lat}/{observer_lng}/{observer_alt}/{search_radius}/{category_id}
   getSatellitesByCat(categoryId?) {
     let mapPosition = this.mapService.getPosition();
-    let getString = `${SatelliteService.N2YO_SATURL}above/${mapPosition.lat}/${mapPosition.lng}/0/${(mapPosition.radius / 1000)}/${categoryId}&apiKey=${SatelliteService.N2YO_API}`;
+    let getString = `${SatelliteService.N2YO_SATURL}above/${mapPosition.lat}/${mapPosition.lng}/0/90/${categoryId}&apiKey=${SatelliteService.N2YO_API}`;
+    console.log(getString)
     return this.http.get(getString);
   }
 

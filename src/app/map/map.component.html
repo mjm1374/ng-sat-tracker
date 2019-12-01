@@ -1,8 +1,8 @@
 <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false"
   (mapClick)="mapClicked($event)" (centerChange)="mapCenterChange($event)" (mapReady)="mapReady($event)">
 
-  <agm-marker *ngFor=" let m of markers; let i=index" (markerClick)="clickedMarker(m.label, i)" [latitude]="m.lat"
-    [longitude]="m.lng" [label]="m.label" [markerDraggable]="m.draggable" (dragEnd)="markerDragEnd(m, $event)">
+  <agm-marker *ngFor=" let m of markers; let i=index" (markerClick)="clickedMarker(m.label, i)" [latitude]="m.satlat"
+    [longitude]="m.satlng" [label]="m.satname" [markerDraggable]="false" (dragEnd)="markerDragEnd(m, $event)">
 
     <agm-info-window>
       <strong>InfoWindow content</strong>
@@ -10,8 +10,17 @@
 
   </agm-marker>
 
-  <agm-circle [latitude]="lat" [longitude]="lng" [radius]="radius" [strokeColor]="'red'" [strokeWeight]="1"
+  <!-- <agm-circle [latitude]="lat" [longitude]="lng" [radius]="radius" [strokeColor]="'red'" [strokeWeight]="1"
     [fillOpacity]="0.05" [circleDraggable]="true" [editable]="true" (radiusChange)="updateRadius($event)">
-  </agm-circle>
+  </agm-circle> -->
 
 </agm-map>
+
+<!-- 
+intDesignator: "2000-004C"
+launchDate: "2000-01-27"
+satalt: 797.1613
+satid: 26063
+satlat: 34.4701
+satlng: -72.2117
+satname: "OPAL" -->

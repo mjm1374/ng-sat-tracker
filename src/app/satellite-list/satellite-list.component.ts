@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { categories } from '../categories';
 import { SatelliteService } from '../satellite.service';
+import { MapService } from '../map.service';
 import { filter, map } from 'rxjs/operators';
 @Component({
   selector: 'app-satellite-list',
@@ -16,7 +17,8 @@ export class SatelliteListComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private satelliteService: SatelliteService
+    private satelliteService: SatelliteService,
+    private mapService: MapService
   ) { }
 
   ngOnInit() {
@@ -33,6 +35,7 @@ export class SatelliteListComponent implements OnInit {
       this.tempSatList = res
       this.satellites = this.tempSatList.above;
       console.log("xxx", this.tempSatList.above);
+      this.mapService.setMarkers(this.tempSatList.above);
     });
   }
 

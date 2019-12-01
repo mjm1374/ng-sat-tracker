@@ -14,10 +14,13 @@ import { MapService } from '../map.service';
 })
 export class MapComponent implements OnInit {
   // default values
-  zoom: number = 8;
+  zoom: number = 5;
   radius: number = 95000;
   newCenterLat: number;
   newCenterLng: number;
+  tempSatList;
+  satellites;
+  markers: marker[];
 
 
   // initial center position for the map
@@ -41,27 +44,11 @@ export class MapComponent implements OnInit {
     } else {
       throw ("Geolocation is not supported by this browser."); //TODO - print to screen
     }
+    this.mapService.getMarkers();
   }
 
   setPosition(position) {
     this.mapService.setPosition(position)
-  }
-
-  showError(error) {
-    switch (error.code) {
-      case error.PERMISSION_DENIED:
-        console.log("User denied the request for Geolocation.");
-        break;
-      case error.POSITION_UNAVAILABLE:
-        console.log("Location information is unavailable.");
-        break;
-      case error.TIMEOUT:
-        console.log("The request to get user location timed out.");
-        break;
-      case error.UNKNOWN_ERROR:
-        console.log("An unknown error occurred.");
-        break;
-    }
   }
 
   clickedMarker(label: string, index: number) {
@@ -84,7 +71,9 @@ export class MapComponent implements OnInit {
       this.lng = this.newCenterLng;
       this.satelliteService.lookUpSatellites({ lat: this.newCenterLat, lng: this.newCenterLng }, this.radius);
       this.setPosition({ lat: this.lat, lng: this.lng, radius: this.radius });
-      console.log('dragmapend', this.newCenterLat, this.newCenterLng)
+      this.markers = this.mapService.getMarkers();
+      console.log('dragmapend', this.newCenterLat, this.newCenterLng);
+      console.log('markers', this.markers);
     });
   }
 
@@ -98,32 +87,54 @@ export class MapComponent implements OnInit {
     this.setPosition({ lat: this.lat, lng: this.lng, radius: this.radius });
   }
 
-  markers: marker[] = [
-    {
-      lat: 40.504402,
-      lng: -75.764910,
-      label: 'Allentown',
-      draggable: true
-    },
-    {
-      lat: 39.409672,
-      lng: -74.522566,
-      label: 'Sea Isle',
-      draggable: false
-    },
-    {
-      lat: 41.433461,
-      lng: -75.620719,
-      label: 'Scranton',
-      draggable: true
+  updateMarkers() {
+    console.log('updateMarkers');
+  }
+
+  showError(error) {
+    switch (error.code) {
+      case error.PERMISSION_DENIED:
+        console.log("User denied the request for Geolocation.");
+        break;
+      case error.POSITION_UNAVAILABLE:
+        console.log("Location information is unavailable.");
+        break;
+      case error.TIMEOUT:
+        console.log("The request to get user location timed out.");
+        break;
+      case error.UNKNOWN_ERROR:
+        console.log("An unknown error occurred.");
+        break;
     }
-  ]
+  }
+
+
+  // markers: marker[] = [
+  //   {
+  //     satlat: 40.504402,
+  //     satlng: -75.764910,
+  //     satname: 'Allentown',
+  //     draggable: true
+  //   },
+  //   {
+  //     satlat: 39.409672,
+  //     satlng: -74.522566,
+  //     satname: 'Sea Isle',
+  //     draggable: false
+  //   },
+  //   {
+  //     satlat: 41.433461,
+  //     satlng: -75.620719,
+  //     satname: 'Scranton',
+  //     draggable: true
+  //   }
+  // ]
 }
 
 // just an interface for type safety.
 interface marker {
-  lat: number;
-  lng: number;
-  label?: string;
+  satlat: number;
+  satlng: number;
+  satname?: string;
   draggable: boolean;
 }
