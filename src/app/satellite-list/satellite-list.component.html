@@ -3,7 +3,9 @@
   <div *ngIf="satellites; else notShow">
     <div *ngFor="let satellite of satellites; index as satId">
       <p>
-        {{ satellite.satname }} ({{satellite.satid}})
+        <a [title]="satellite.satname + ' details'" [routerLink]="['/satellite', satellite.satid]">
+          {{ satellite.satname }} ({{satellite.satid}})
+        </a>
       </p>
     </div>
   </div>
