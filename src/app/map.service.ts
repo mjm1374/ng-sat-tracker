@@ -30,6 +30,14 @@ export class MapService {
     this.markers = markers;
   }
 
+  addToMarkers(markers) {
+    markers.forEach(sat => {
+      if (!this.markers.some(e => e.satid === sat.satid)) {
+        this.markers.push(sat)
+      }
+    });
+  }
+
   clearMarkers() {
     this.markers;
   }

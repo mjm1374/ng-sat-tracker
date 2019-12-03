@@ -1,4 +1,4 @@
-<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false"
+<agm-map   [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="true" [panControl]="true" [scaleControl]="true" [mapTypeControl]="true"
   (mapClick)="mapClicked($event)" (centerChange)="mapCenterChange($event)" (mapReady)="mapReady($event)">
 
   <agm-marker *ngFor=" let m of markers; let i=index" (markerClick)="clickedMarker(m.label, i)" [latitude]="m.satlat"
@@ -12,24 +12,3 @@
     </agm-info-window>
 
   </agm-marker>
-
-  <!-- <agm-circle [latitude]="lat" [longitude]="lng" [radius]="radius" [strokeColor]="'red'" [strokeWeight]="1"
-    [fillOpacity]="0.05" [circleDraggable]="true" [editable]="true" (radiusChange)="updateRadius($event)">
-  </agm-circle> 
-
-[icon]="{url: '.../../assets/satellite.png',labelOrigin:{x:22.5,y:20},
-scaledSize:
-{height: 45,width: 45}}"
-
--->
-
-</agm-map>
-
-<!-- 
-intDesignator: "2000-004C"
-launchDate: "2000-01-27"
-satalt: 797.1613
-satid: 26063
-satlat: 34.4701
-satlng: -72.2117
-satname: "OPAL" -->

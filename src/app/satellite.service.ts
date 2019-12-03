@@ -11,6 +11,7 @@ export class SatelliteService {
   static N2YO_SATURL = "https://www.n2yo.com/rest/v1/satellite/";
   satellites = [];
   newSatellites = 0;
+  categoryId;
 
   @Output() updateSats: EventEmitter<number> = new EventEmitter();
 
@@ -39,16 +40,17 @@ export class SatelliteService {
   }
   //Request: /above/{observer_lat}/{observer_lng}/{observer_alt}/{search_radius}/{category_id}
   getSatellitesByCat(categoryId?) {
+    if (categoryId) this.categoryId = categoryId;
     let mapPosition = this.mapService.getPosition();
-    let getString = `${SatelliteService.N2YO_SATURL}above/${mapPosition.lat}/${mapPosition.lng}/0/90/${categoryId}&apiKey=${SatelliteService.N2YO_API}`;
-    this.newSatellites = categoryId;
+    let getString = `${SatelliteService.N2YO_SATURL}above/${mapPosition.lat}/${mapPosition.lng}/0/90/${this.categoryId}&apiKey=${SatelliteService.N2YO_API}`;
+    this.newSatellites = this.categoryId;
     return this.http.get(getString);
   }
+
   emitUpdateSats() {
     this.updateSats.emit(this.newSatellites);
     this.newSatellites = 0;
   }
-
 
   clearSatellites() {
     this.satellites = [];

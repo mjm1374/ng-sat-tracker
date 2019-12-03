@@ -35,7 +35,7 @@ export class SatelliteListComponent implements OnInit {
       this.tempSatList = res
       this.satellites = this.tempSatList.above;
       this.mapService.setMarkers(this.tempSatList.above);
-      console.log("xxx", categoryId, this.tempSatList.above);
+      console.log("catID", categoryId, this.tempSatList.above);
       this.satelliteService.emitUpdateSats();
 
     });

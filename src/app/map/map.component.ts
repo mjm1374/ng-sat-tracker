@@ -21,6 +21,7 @@ export class MapComponent implements OnInit {
   tempSatList;
   satellites;
   markers: marker[];
+  map;
 
 
   // initial center position for the map
@@ -46,12 +47,10 @@ export class MapComponent implements OnInit {
     } else {
       throw ("Geolocation is not supported by this browser."); //TODO - print to screen
     }
-    //this.mapService.getMarkers();
 
     this.satelliteService.updateSats.subscribe(newSatellites => {
       this.newSatellites = newSatellites;
-      this.markers = this.mapService.getMarkers();//  <----------------------- HERE
-      console.log('this.newSatellites', this.newSatellites)
+      this.markers = this.mapService.getMarkers();
     });
   }
 
@@ -74,14 +73,20 @@ export class MapComponent implements OnInit {
   }
 
   mapReady(map) {
-    map.addListener("dragend", () => {
+    this.map = map;
+    this.map.addListener("dragend", () => {
       this.lat = this.newCenterLat;
       this.lng = this.newCenterLng;
-      this.satelliteService.lookUpSatellites({ lat: this.newCenterLat, lng: this.newCenterLng }, this.radius);
       this.setPosition({ lat: this.lat, lng: this.lng, radius: this.radius });
+
+      this.satelliteService.getSatellitesByCat().subscribe((res) => {
+        this.tempSatList = res
+        this.satellites = this.tempSatList.above;
+        this.mapService.addToMarkers(this.tempSatList.above);
+        this.satelliteService.emitUpdateSats();
+
+      });
       this.markers = this.mapService.getMarkers();
-      console.log('dragmapend', this.newCenterLat, this.newCenterLng);
-      //console.log('markers', this.markers);
     });
   }
 
