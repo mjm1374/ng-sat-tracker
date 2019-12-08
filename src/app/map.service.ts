@@ -9,7 +9,7 @@ export class MapService {
   lat: number = 40.654597;
   lng: number = -74.061342;
   radius: number = 50000;
-  markers;
+  markers = [];
 
   getPosition() {
     return { lat: this.lat, lng: this.lng, radius: this.radius };
@@ -25,17 +25,21 @@ export class MapService {
     return this.markers;
   }
 
-  setMarkers(markers) {
-    this.clearMarkers();
-    this.markers = markers;
-  }
+  
 
   addToMarkers(markers) {
     markers.forEach(sat => {
       if (!this.markers.some(e => e.satid === sat.satid)) {
+        let tempDate = new Date(sat.launchDate);
+        let formatted_date = tempDate.getMonth() + "-" + (tempDate.getDate() + 1) + "-" + tempDate.getFullYear();
+        sat.launchDate = formatted_date; 
         this.markers.push(sat)
       }
     });
+  }
+  setMarkers(markers) {
+    this.clearMarkers();
+    this.addToMarkers(markers);
   }
 
   clearMarkers() {
