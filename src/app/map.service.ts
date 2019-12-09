@@ -22,7 +22,7 @@ export class MapService {
   }
 
   getMarkers() {
-    return this.markers;
+    return this.markers; 
   }
 
   
