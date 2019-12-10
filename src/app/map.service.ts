@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -6,19 +6,29 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MapService {
 
+  @Output() updatePos: EventEmitter<object> = new EventEmitter();
+
   lat: number = 40.654597;
   lng: number = -74.061342;
   radius: number = 50000;
   markers = [];
 
+  emitUpdatePos() {
+    let tempPos = { lat: this.lat, lng: this.lng, radius: this.radius }
+    this.updatePos.emit(tempPos);
+
+  }
+
   getPosition() {
+    
     return { lat: this.lat, lng: this.lng, radius: this.radius };
   }
 
-  setPosition(position) {
+  setPosition(position, triggerEmit = false) {
     this.lat = position.lat;
     this.lng = position.lng;
     this.radius = position.radius;
+    if(triggerEmit) this.emitUpdatePos();
   }
 
   getMarkers() {

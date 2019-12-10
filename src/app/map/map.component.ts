@@ -52,6 +52,11 @@ export class MapComponent implements OnInit {
       this.newSatellites = newSatellites;
       this.markers = this.mapService.getMarkers();
     });
+
+    this.mapService.updatePos.subscribe((res) => {
+      this.lat = res.lat;
+      this.lng = res.lng;
+    });
   }
 
   setPosition(position) {
