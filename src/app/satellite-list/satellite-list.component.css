@@ -7,3 +7,12 @@
   border: 1px solid #3a3636;
 
 }
+.satList a{
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.satList a:hover{
+  color: #ffffff;
+  text-decoration: underline;
+}
