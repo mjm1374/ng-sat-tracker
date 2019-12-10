@@ -15,7 +15,7 @@ import { MapService } from '../map.service';
 export class MapComponent implements OnInit {
   // default values
   zoom: number = 5;
-  radius: number = 95000;
+  radius: number = 5;
   newCenterLat: number;
   newCenterLng: number;
   tempSatList;

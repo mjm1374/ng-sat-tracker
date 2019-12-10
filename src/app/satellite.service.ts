@@ -1,11 +1,11 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MapService } from './map.service';
-import { filter, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class SatelliteService {
   static N2YO_API = "6MVMLK-EJ3FXU-BTVB3F-3TNQ";
   static N2YO_SATURL = "https://www.n2yo.com/rest/v1/satellite/";
@@ -14,7 +14,6 @@ export class SatelliteService {
   categoryId;
 
   @Output() updateSats: EventEmitter<number> = new EventEmitter();
-
 
   constructor(
     private http: HttpClient,
