@@ -53,7 +53,7 @@ export class MapService {
   }
 
   clearMarkers() {
-    this.markers;
+    this.markers = [];
   }
 
   constructor(
