@@ -7,6 +7,6 @@ a:hover{
 }
 a::before{
     content: ' \f359 ';
-    margin-right: 10px;
+    margin-right: 5px;
     font-family: 'Font Awesome 5 Pro';
   }

@@ -11,7 +11,7 @@ import { filter, map } from 'rxjs/operators';
   styleUrls: ['./satellite-list.component.css']
 })
 export class SatelliteListComponent implements OnInit {
-  satellites;
+  satellites = [];
   category;
   tempSatList;
 
@@ -27,19 +27,25 @@ export class SatelliteListComponent implements OnInit {
       this.category = categories.find(cat => cat.id == parseInt(params.get('categoryId')))
     });
 
-    this.getSatellites(this.category.id);
+    if(this.category.id != this.satelliteService.getCurrentCat()){
+      this.getSatellites(this.category.id);
+    }else{
+      this.satellites = this.mapService.getMarkers(); 
+      this.satelliteService.emitUpdateSats();
+    }
+    
+    this.satelliteService.updateSats.subscribe(newSatellites => {
+      this.satellites = this.mapService.getMarkers(); 
+    });
   }
 
   getSatellites(categoryId) {
-    if(categoryId !== this.category) this.satelliteService.clearSatellites();
     this.satelliteService.getSatellitesByCat(categoryId).subscribe((res) => {
       this.tempSatList = res;
       this.satellites = this.tempSatList.above;
       this.mapService.setMarkers(this.tempSatList.above);
-      console.log("catID", categoryId, this.tempSatList.above);
       this.satelliteService.emitUpdateSats();
-
     });
-  }
+  } 
 
 }

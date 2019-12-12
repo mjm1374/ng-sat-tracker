@@ -18,18 +18,11 @@ export class SatelliteDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
     this.markers= this.mapService.getMarkers();
-
     this.route.paramMap.subscribe(params => {
       this.satellite = this.markers.find(sat => sat.satid == parseInt(params.get('satelliteId')));
-      console.log(this.satellite); 
       this.mapService.setPosition({lat: this.satellite.satlat, lng: this.satellite.satlng, radius: 50000 }, true)
     });
 
-    
-
-    //this.getSatellites(this.category.id);
   }
-//satelliteId
 }

@@ -14,7 +14,7 @@ import { MapService } from '../map.service';
 })
 export class MapComponent implements OnInit {
   // default values
-  zoom: number = 5;
+  zoom: number = 4;
   radius: number = 5;
   newCenterLat: number;
   newCenterLng: number;
@@ -69,7 +69,7 @@ export class MapComponent implements OnInit {
 
   mapClicked($event: MouseEvent) {
     //this.satelliteService.addToSatellites($event);
-    console.log(this.satelliteService.getSatellites());
+   // console.log(this.satelliteService.getSatellites());
   }
 
   mapCenterChange($event) {
@@ -86,18 +86,20 @@ export class MapComponent implements OnInit {
 
       this.satelliteService.getSatellitesByCat().subscribe((res) => {
         this.tempSatList = res
-        console.log(this.tempSatList);
         this.satellites = this.tempSatList.above;
         this.mapService.addToMarkers(this.tempSatList.above);
         this.satelliteService.emitUpdateSats();
-
       });
       this.markers = this.mapService.getMarkers();
     });
   }
 
+  getMarkers(){
+    
+  }
+
   markerDragEnd(m: marker, $event: MouseEvent) {
-    console.log('dragEnd', m, $event);
+    //console.log('dragEnd', m, $event);
   }
 
   updateRadius($event) {

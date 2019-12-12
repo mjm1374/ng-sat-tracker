@@ -11,7 +11,7 @@ export class SatelliteService {
   static N2YO_SATURL = "https://www.n2yo.com/rest/v1/satellite/";
   satellites = [];
   newSatellites = 0;
-  categoryId;
+  categoryId: number;
 
   @Output() updateSats: EventEmitter<number> = new EventEmitter();
 
@@ -30,11 +30,14 @@ export class SatelliteService {
     );
   }
 
+  getCurrentCat(){
+    return this.categoryId;
+  }
+
   lookUpSatellites(position: position, radius: number) {
     return null;
   }
   getSatellites() {
-    console.log('getSatellites');
     return this.satellites;
   }
   //Request: /above/{observer_lat}/{observer_lng}/{observer_alt}/{search_radius}/{category_id}

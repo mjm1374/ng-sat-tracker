@@ -20,7 +20,6 @@ export class MapService {
   }
 
   getPosition() {
-    
     return { lat: this.lat, lng: this.lng, radius: this.radius };
   }
 
