@@ -86,6 +86,7 @@ export class MapComponent implements OnInit {
 
       this.satelliteService.getSatellitesByCat().subscribe((res) => {
         this.tempSatList = res
+        console.log(this.tempSatList);
         this.satellites = this.tempSatList.above;
         this.mapService.addToMarkers(this.tempSatList.above);
         this.satelliteService.emitUpdateSats();

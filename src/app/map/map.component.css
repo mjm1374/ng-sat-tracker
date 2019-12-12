@@ -2,3 +2,16 @@ agm-map {
   height: 100%;
   width: 100%;
 }
+
+.LatLng{
+  margin-top: 10px;
+  display: inline-block
+}
+
+.LatLng:last-of-type{
+  margin-left: 20px;
+}
+.b{
+  font-weight: 700;
+  color: #1b6d0d;
+}

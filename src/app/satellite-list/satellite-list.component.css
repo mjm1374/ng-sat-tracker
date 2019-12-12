@@ -16,3 +16,9 @@
   color: #ffffff;
   text-decoration: underline;
 }
+
+.satList a.back::before{
+  content: ' \f359 ';
+  margin-right: 10px;
+	font-family: 'Font Awesome 5 Pro';
+}

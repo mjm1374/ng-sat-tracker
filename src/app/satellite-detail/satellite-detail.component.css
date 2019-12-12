@@ -5,3 +5,8 @@ a{
 a:hover{
     text-decoration: underline;
 }
+a::before{
+    content: ' \f359 ';
+    margin-right: 10px;
+    font-family: 'Font Awesome 5 Pro';
+  }
