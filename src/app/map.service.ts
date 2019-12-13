@@ -1,5 +1,6 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {marker, satellite, position} from './interfaces'
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class MapService {
   lat: number = 40.654597;
   lng: number = -74.061342;
   radius: number = 50000;
-  markers = [];
+  satellites: satellite[];
 
   emitUpdatePos() {
     let tempPos = { lat: this.lat, lng: this.lng, radius: this.radius }
@@ -31,28 +32,32 @@ export class MapService {
   }
 
   getMarkers() {
-    return this.markers; 
+    return this.satellites; 
   }
 
   
 
-  addToMarkers(markers) {
-    markers.forEach(sat => {
-      if (!this.markers.some(e => e.satid === sat.satid)) {
-        let tempDate = new Date(sat.launchDate);
-        let formatted_date = tempDate.getMonth() + "-" + (tempDate.getDate() + 1) + "-" + tempDate.getFullYear();
-        sat.launchDate = formatted_date; 
-        this.markers.push(sat)
-      }
-    });
+  addToMarkers(satellites) {
+    if(satellites != undefined && satellites.length > 3){
+      satellites.forEach(sat => {
+        if (!this.satellites.some(e => e.satid === sat.satid)) {
+          let tempDate = new Date(sat.launchDate);
+          let formatted_date = tempDate.getMonth() + "-" + (tempDate.getDate() + 1) + "-" + tempDate.getFullYear();
+          sat.launchDate = formatted_date; 
+          this.satellites.push(sat)
+        }
+      });
+    }else{
+      this.clearMarkers();
+    }
   }
-  setMarkers(markers) {
+  setMarkers(satellites) {
     this.clearMarkers();
-    this.addToMarkers(markers);
+    this.addToMarkers(satellites);
   }
 
   clearMarkers() {
-    this.markers = [];
+    this.satellites = [];
   }
 
   constructor(

@@ -2,14 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SatelliteService } from '../satellite.service';
 import { MapService } from '../map.service';
+import {marker, satellite, position} from '../interfaces'
+
 @Component({
   selector: 'app-satellite-detail',
   templateUrl: './satellite-detail.component.html',
   styleUrls: ['./satellite-detail.component.css']
 })
 export class SatelliteDetailComponent implements OnInit {
-  satellite;
-  markers;
+  satellite: satellite;
+  markers: any[];
 
   constructor(
     private route: ActivatedRoute,

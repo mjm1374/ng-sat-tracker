@@ -7,6 +7,8 @@ import { debounceTime, map } from 'rxjs/operators';
 import { SatelliteService } from '../satellite.service';
 import { MapService } from '../map.service';
 
+import {marker, satellite} from '../interfaces'
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -19,8 +21,8 @@ export class MapComponent implements OnInit {
   newCenterLat: number;
   newCenterLng: number;
   tempSatList;
-  satellites;
-  markers: marker[];
+  satellites: satellite[];
+  markers: satellite[];
   map;
 
 
@@ -131,9 +133,3 @@ export class MapComponent implements OnInit {
 }
 
 // just an interface for type safety.
-interface marker {
-  satlat: number;
-  satlng: number;
-  satname?: string;
-  draggable: boolean;
-}

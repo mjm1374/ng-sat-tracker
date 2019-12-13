@@ -1,6 +1,7 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MapService } from './map.service';
+import {marker, satellite, position} from './interfaces'
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { MapService } from './map.service';
 export class SatelliteService {
   static N2YO_API = "6MVMLK-EJ3FXU-BTVB3F-3TNQ";
   static N2YO_SATURL = "https://www.n2yo.com/rest/v1/satellite/";
-  satellites = [];
+  satellites: position[];
   newSatellites = 0;
   categoryId: number;
 
@@ -58,9 +59,4 @@ export class SatelliteService {
     this.satellites = [];
     return this.satellites;
   }
-}
-
-interface position {
-  lat: number;
-  lng: number;
 }
