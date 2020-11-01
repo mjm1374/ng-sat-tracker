@@ -22,7 +22,7 @@ export class SatelliteListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    
     this.route.paramMap.subscribe(params => {
       this.category = categories.find(cat => cat.id == parseInt(params.get('categoryId')))
     });
