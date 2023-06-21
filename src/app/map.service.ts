@@ -14,7 +14,7 @@ export class MapService {
   radius: number = 50000;
   satellites: satellite[];
 
-  emitUpdatePos() {
+  emitUpdatePos(): void {
     let tempPos = { lat: this.lat, lng: this.lng, radius: this.radius }
     this.updatePos.emit(tempPos);
 
@@ -24,7 +24,7 @@ export class MapService {
     return { lat: this.lat, lng: this.lng, radius: this.radius };
   }
 
-  setPosition(position, triggerEmit = false) {
+  setPosition(position, triggerEmit = false): void {
     this.lat = position.lat;
     this.lng = position.lng;
     this.radius = position.radius;

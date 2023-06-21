@@ -16,7 +16,7 @@ export class SatelliteService {
   static DEV_API ="http://ng-php-api:8888/";
 
   satellites: position[];
-  newSatellites = 0;
+  newSatellites: number = 0;
   categoryId: number;
 
   @Output() updateSats: EventEmitter<number> = new EventEmitter();
