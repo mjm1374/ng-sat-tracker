@@ -26,7 +26,7 @@ import { SatelliteDetailComponent } from './satellite-detail/satellite-detail.co
       ReactiveFormsModule,
       HttpClientModule,
       AgmCoreModule.forRoot({
-         apiKey: "AIzaSyAnJkzn_D_jeEWtfJTgXHpYvhUpD7XK_8k"
+         apiKey: "AIzaSyBtk6iKOhq8lLL-pk4JlGF3vQhVr4wFOxI"
       })
    ],
    providers: [MapComponent],

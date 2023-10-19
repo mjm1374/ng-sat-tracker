@@ -1,23 +1,41 @@
-<agm-map   [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="true" [panControl]="true" [scaleControl]="true" [mapTypeControl]="true"
-  (mapClick)="mapClicked($event)" (centerChange)="mapCenterChange($event)" (mapReady)="mapReady($event)">
-
-  <agm-marker *ngFor=" let m of markers; let i=index" (markerClick)="clickedMarker(m.label, i)" [latitude]="m.satlat"
-    [longitude]="m.satlng" [label]="{fontSize: '12px', fontWeight: 'bold', text: m.satname}"
-    [iconUrl]="{url: '.../../assets/icons8-satellite-50.png',labelOrigin:{x:22.5,y:-5}}" [markerDraggable]="false"
-    (dragEnd)="markerDragEnd(m,
-    $event)">
-
+<agm-map
+  [latitude]="lat"
+  [longitude]="lng"
+  [zoom]="zoom"
+  [disableDefaultUI]="false"
+  [zoomControl]="true"
+  [panControl]="true"
+  [scaleControl]="true"
+  [mapTypeControl]="true"
+  (mapClick)="mapClicked($event)"
+  (centerChange)="mapCenterChange($event)"
+  (mapReady)="mapReady($event)"
+>
+  <agm-marker
+    *ngFor="let m of markers; let i = index"
+    (markerClick)="clickedMarker(m.label, i)"
+    [latitude]="m.satlat"
+    [longitude]="m.satlng"
+    [label]="{ fontSize: '12px', fontWeight: 'bold', text: m.satname }"
+    [iconUrl]="{
+      url: '.../../assets/icons8-satellite-50.png',
+      labelOrigin: { x: 22.5, y: -5 }
+    }"
+    [markerDraggable]="false"
+    (dragEnd)="markerDragEnd(m, $event)"
+  >
     <agm-info-window>
-      <strong>{{m.satname}}</strong><br/>
-      Intl Designation: {{m.intDesignator}} <br/>
-      Launch Date: {{m.launchDate}} <br/>
-      Alt: {{m.satalt}} Km<br/>
-      Lat: {{m.satlat}} <br/>
-      Lng: {{m.satlng}}  <br/>
+      <strong>{{ m.satname }}</strong
+      ><br />
+      Intl Designation: {{ m.intDesignator }} <br />
+      Launch Date: {{ m.launchDate }} <br />
+      Alt: {{ m.satalt }} Km<br />
+      Lat: {{ m.satlat }} <br />
+      Lng: {{ m.satlng }} <br />
     </agm-info-window>
-
   </agm-marker>
-  </agm-map>
-  <div class="LatLng"><span class="b">Lat:</span> {{newCenterLat}}</div>
-  <div class="LatLng"><span class="b">Lng:</span> {{newCenterLng}}</div>
+</agm-map>
+<div class="LatLng"><span class="b">Lat:</span> {{ newCenterLat }}</div>
+<div class="LatLng"><span class="b">Lng:</span> {{ newCenterLng }}</div>
 
+//AIzaSyBtk6iKOhq8lLL-pk4JlGF3vQhVr4wFOxI
