@@ -39,3 +39,20 @@ body {
   color: #000;
 }
 
+
+.backButton{
+  background-color: #344feb;
+  color: whitesmoke;
+  padding: 10px 10px;
+  border-radius: 10px;
+  border-width: 0px;
+
+}
+.backButton:hover {
+	background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+	background-color:#6c7c7c;
+}
+.backButton:active {
+	position:relative;
+	top:1px;
+}

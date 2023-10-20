@@ -1,22 +1,23 @@
-<h1> Satellites </h1>
+<h1>Satellites</h1>
 
 <div class="satList">
   <div *ngIf="satellites; else notShow">
     <div *ngFor="let satellite of satellites; index as satId">
       <p>
-        <a [title]="satellite.satname + ' details'" [routerLink]="['/satellite', satellite.satid]">
-          {{ satellite.satname }} ({{satellite.satid}})
+        <a
+          [title]="satellite.satname + ' details'"
+          [routerLink]="['/satellite', satellite.satid]"
+        >
+          {{ satellite.satname }} ({{ satellite.satid }})
         </a>
       </p>
     </div>
   </div>
   <ng-template #notShow>
-    <p>
-      There are no satellites currently visible from here.
-    </p>
+    <p>There are no satellites currently visible from here.</p>
   </ng-template>
 
   <p>
-    <a class="back" onclick=window.history.back();>Go Back</a>
+    <button class="backButton" onclick="window.history.back();">Go Back</button>
   </p>
 </div>
