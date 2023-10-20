@@ -1,6 +1,6 @@
 .satList {
   width: 100%;
-  height: 90%;
+  height: 84%;
   overflow-y: scroll;
   background: #2c2626;
   padding: 5px;
@@ -13,7 +13,6 @@
 }
 
 .satList a:hover{
-  color: #ffffff;
   text-decoration: underline;
 }
 
@@ -23,3 +22,7 @@
 	font-family: 'Font Awesome 5 Pro';
 }
 
+
+.hidden{
+  display:none;
+}

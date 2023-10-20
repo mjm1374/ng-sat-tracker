@@ -16,9 +16,14 @@
     (markerClick)="clickedMarker(m.label, i)"
     [latitude]="m.satlat"
     [longitude]="m.satlng"
-    [label]="{ fontSize: '12px', fontWeight: 'bold', text: m.satname }"
+    [label]="{
+      fontSize: '10px',
+      fontWeight: 'bold',
+      text: m.satname,
+      color: '#044aa8'
+    }"
     [iconUrl]="{
-      url: '.../../assets/icons8-satellite-50.png',
+      url: '.../../assets/tiny_sat.webp',
       labelOrigin: { x: 22.5, y: -5 }
     }"
     [markerDraggable]="false"

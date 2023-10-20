@@ -39,7 +39,7 @@ export class SatelliteListComponent implements OnInit {
     });
   }
 
-  getSatellites(categoryId) {
+  async getSatellites(categoryId) {
     this.satelliteService.getSatellitesByCat(categoryId).subscribe((res) => {
       this.tempSatList = res;
       this.satellites = this.tempSatList.above;

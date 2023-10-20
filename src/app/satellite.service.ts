@@ -50,7 +50,7 @@ export class SatelliteService {
   getSatellitesByCat(categoryId?) {
     if (categoryId) this.categoryId = categoryId;
     let mapPosition = this.mapService.getPosition();
-    let getString = `${SatelliteService.PHP_API}above.php?lat=${mapPosition.lat}&lng=${mapPosition.lng}&alt=0&rad=90&cat=${this.categoryId}`;
+    let getString = `${SatelliteService.PHP_API}above.php?lat=${mapPosition.lat}&lng=${mapPosition.lng}&alt=0&rad=120&cat=${this.categoryId}`;
     console.log(getString);
     this.newSatellites = this.categoryId;
     return this.http.get(getString);

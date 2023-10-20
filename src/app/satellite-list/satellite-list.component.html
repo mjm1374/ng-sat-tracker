@@ -1,7 +1,8 @@
+<div [ngClass]="{ hidden: satellites }">Waiting</div>
 <h1>Satellites</h1>
 
 <div class="satList">
-  <div *ngIf="satellites; else notShow">
+  <div *ngIf="satellites; else noSateleites">
     <div *ngFor="let satellite of satellites; index as satId">
       <p>
         <a
@@ -13,11 +14,10 @@
       </p>
     </div>
   </div>
-  <ng-template #notShow>
+  <ng-template #noSateleites>
     <p>There are no satellites currently visible from here.</p>
   </ng-template>
-
-  <p>
-    <button class="backButton" onclick="window.history.back();">Go Back</button>
-  </p>
 </div>
+<p>
+  <button class="backButton" onclick="window.history.back();">Go Back</button>
+</p>
