@@ -11,6 +11,7 @@ import { MainMenuComponent } from "./main-menu/main-menu.component";
 import { MapComponent } from "./map/map.component";
 import { AgmCoreModule } from "@agm/core"; //google maps
 import { SatelliteDetailComponent } from './satellite-detail/satellite-detail.component';
+import { environment } from '../environments/environment';
 @NgModule({
    declarations: [
       AppComponent,
@@ -26,7 +27,7 @@ import { SatelliteDetailComponent } from './satellite-detail/satellite-detail.co
       ReactiveFormsModule,
       HttpClientModule,
       AgmCoreModule.forRoot({
-         apiKey: "AIzaSyBtk6iKOhq8lLL-pk4JlGF3vQhVr4wFOxI"
+         apiKey: environment.gMapApi
       })
    ],
    providers: [MapComponent],
