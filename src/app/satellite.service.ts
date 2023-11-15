@@ -12,7 +12,7 @@ export class SatelliteService {
   //static N2YO_API = Apikey.N2YO_API; 
   static N2YO_API = "6MVMLK-EJ3FXU-BTVB3F-3TNQ";
   static N2YO_SATURL = "https://api.n2yo.com/rest/v1/satellite/";
-  static PHP_API = "https://satellite.logikbox.com/api/";
+  static PHP_API = "https://logikbox.com/api/";
   static DEV_API ="http://ng-php-api:8888/";
 
   satellites: position[];
